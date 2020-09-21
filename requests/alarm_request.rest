@@ -2,8 +2,8 @@ POST http://localhost:3001/api/alarmMessages/
 Content-Type: application/json
 
 {
-    "hours": 16,
-    "minutes": 29,
+    "hours": 0,
+    "minutes": 27,
     "message": "You shouldn't read this",
     "code": "aHn2",
     "timeToExpire": 15
