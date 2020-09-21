@@ -8,8 +8,11 @@ const getTimeAsian = () => {
     console.log("The time right now is :", now);
 
     const splitDateTime = now.split(',')
-    const date = splitDateTime[0].split('.') ? splitDateTime[0].split('.') : splitDateTime[0].split('/') 
+    const date = splitDateTime[0].split('.')
+    console.log(Boolean(date[0]))
+    if(date[0]) date = splitDateTime[0].split('/')
     const time = splitDateTime[1].split(':')
+
     return {
         day: Number(date[0]),
         month:Number(date[1]),
