@@ -9,8 +9,8 @@ const getTimeAsian = () => {
 
     const splitDateTime = now.split(',')
     let date = splitDateTime[0].split('.')
-    console.log(date[0] === null,date[0])
-    if(date[0] === null) date = splitDateTime[0].split('/')
+    console.log(Number(date[0]) === null,date[0])
+    if(Number(date[0]) === null) date = splitDateTime[0].split('/')
 
     const time = splitDateTime[1].split(':')
 
