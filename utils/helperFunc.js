@@ -10,7 +10,7 @@ const getTimeAsian = () => {
     const splitDateTime = now.split(',')
     let date = splitDateTime[0].split('/')
     const time = splitDateTime[1].split(':')
-    //The time display in the heroku is different from localhost
+    //The time display in the heroku is different from localhost (mm/dd/yyyy from dd/mm/yyyy)
     return {
         day: Number(date[1]),
         month:Number(date[0]),
