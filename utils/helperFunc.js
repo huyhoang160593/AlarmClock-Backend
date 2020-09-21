@@ -1,22 +1,19 @@
 
 const getTimeAsian = () => {
     const now = new Date()
-    .toLocaleString('de-DE', { 
+    .toLocaleString('en-GB', { 
         hour12: false, 
         timeZone: 'Asia/Bangkok' 
     })
     console.log("The time right now is :", now);
 
     const splitDateTime = now.split(',')
-    let date = splitDateTime[0].split('.')
-    console.log(Number(date[0]) === null,date[0])
-    if(Number(date[0]) === null) date = splitDateTime[0].split('/')
-
+    let date = splitDateTime[0].split('/')
     const time = splitDateTime[1].split(':')
-
+    //The time display in the heroku is different from localhost
     return {
-        day: Number(date[0]),
-        month:Number(date[1]),
+        day: Number(date[1]),
+        month:Number(date[0]),
         year:Number(date[2]),
         hours:Number(time[0]),
         minutes:Number(time[1]),
