@@ -1,18 +1,25 @@
-const formatTimeToObject = (timeString) =>{
-    let timeObj = {}
-    let splitTime = timeString.split(':')
-    timeObj['hours'] = Number(splitTime[0])
-    timeObj['minutes'] = Number(splitTime[1])
-    return timeObj
-}
 
 const getTimeAsian = () => {
     const now = new Date()
-    return now.toLocaleString('de-DE', {hour: '2-digit', minute: '2-digit',  hour12: false, timeZone: 'Asia/Bangkok' })
+    .toLocaleString('de-DE', { 
+        hour12: false, 
+        timeZone: 'Asia/Bangkok' 
+    })
+
+    const splitDateTime = now.split(',')
+    const date = splitDateTime[0].split('.')
+    const time = splitDateTime[1].split(':')
+    return {
+        day: Number(date[0]),
+        month:Number(date[1]),
+        year:Number(date[2]),
+        hours:Number(time[0]),
+        minutes:Number(time[1]),
+        seconds:Number(time[2])
+    }
 }
 
 module.exports = {
-    formatTimeToObject,
     getTimeAsian
 }
 

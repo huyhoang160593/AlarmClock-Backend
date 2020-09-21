@@ -1,6 +1,6 @@
 const alarmRouter = require('express').Router()
 const AlarmMessage = require('../models/alarmMessage')
-const { formatTimeToObject, getTimeAsian } = require('../utils/helperFunc')
+const { getTimeAsian } = require('../utils/helperFunc')
 
 /*
     We don't need next(exception) call because library 'express-async-errors' handles everything for us
@@ -13,25 +13,30 @@ alarmRouter.get('/', async(request,response) => {
 })
 
 alarmRouter.get('/setup', async(req,res) => {
-    res.json({currentTime: getTimeAsian()})
+    res.json(getTimeAsian())
 })
 
-alarmRouter.get('/newest', async(req,res) =>{
-    const currTime = formatTimeToObject(getTimeAsian())
+alarmRouter.get('/nearest', async(req,res) =>{
+    const currTime = getTimeAsian()
     const alarmMessages = await AlarmMessage
         .find({})
 
     if(alarmMessages){
-        let getNewestAlarm = alarmMessages
-        .filter(alarm =>{
+
+        let getNearestAlarm = alarmMessages
+            .filter(alarm =>{
             if(alarm.hours === currTime.hours) 
                 {
                     return alarm.minutes > currTime.minutes
                 }
             else return alarm.hours > currTime.hours
         })
-        .sort((a,b) => a.hours - b.hours || a.minutes - b.minutes)[0]
-        res.json(getNewestAlarm)
+            .sort((a,b) => a.hours - b.hours || a.minutes - b.minutes)[0]
+
+        let getEarliestAlarm = alarmMessages
+            .sort((a,b) => a.hours - b.hours || a.minutes - b.minutes)[0]
+
+        res.json(getNearestAlarm ?? getEarliestAlarm)
     }
 })
 

@@ -45,13 +45,13 @@ Content-Type: application/json
     "code": "aHn9"
 }
 
-###
+###setup the current time being
 
 GET http://localhost:3001/api/alarmMessages/setup HTTP/1.1
 
-###
+###Get the nearest alarm that come
 
-GET http://localhost:3001/api/alarmMessages/newest HTTP/1.1
+GET http://localhost:3001/api/alarmMessages/nearest HTTP/1.1
 
 ###Delete All
 DELETE http://localhost:3001/api/alarmMessages/ HTTP/1.1
