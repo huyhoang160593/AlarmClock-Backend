@@ -5,7 +5,6 @@ const getTimeAsian = () => {
         hour12: false, 
         timeZone: 'Asia/Bangkok' 
     })
-    console.log("The time right now is :", now);
 
     const splitDateTime = now.split(',')
     let date = splitDateTime[0].split('/')
