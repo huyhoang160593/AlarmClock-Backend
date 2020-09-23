@@ -36,7 +36,7 @@ alarmRouter.get('/nearest', async(req,res) =>{
         let getEarliestAlarm = alarmMessages
             .sort((a,b) => a.hours - b.hours || a.minutes - b.minutes)[0]
 
-        res.json(getNearestAlarm ? getNearestAlarm : getEarliestAlarm)
+        res.json(getNearestAlarm ? getNearestAlarm.toObject() : getEarliestAlarm.toObject())
     }
 })
 

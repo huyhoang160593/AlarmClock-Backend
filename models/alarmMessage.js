@@ -29,4 +29,12 @@ alarmSchema.set('toJSON',{
     }
 })
 
+alarmSchema.set('toObject',{
+    transform: (document,returnObject) => {
+        delete returnObject._id
+        delete returnObject.message
+        delete returnObject.__v
+    }
+})
+
 module.exports = mongoose.model('Alarm', alarmSchema)
