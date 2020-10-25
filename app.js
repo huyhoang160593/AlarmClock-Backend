@@ -16,9 +16,11 @@ mongoose.connect(config.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology
         logger.error('error connection to MongoDB:', error.message)
     })
 
-app.get('/',(req,res)=>{
-    res.send('<h1>This is Main Page</h1>')
-})
+// app.get('/',(req,res)=>{
+//     res.send('<h1>This is Main Page</h1>')
+// })
+
+app.use(express.static('build'))
 
 app.use(cors())
 app.use(express.json())
