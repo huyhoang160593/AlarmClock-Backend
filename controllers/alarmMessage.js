@@ -58,7 +58,19 @@ alarmRouter.get('/:id', async(request, response) => {
 alarmRouter.get('/code/:code', async(req,res) =>{
     const alarmMessage = await AlarmMessage.findOne({code: `${req.params.code}`})
     const timeToExpire = alarmMessage.timeToExpire ? alarmMessage.timeToExpire * 1000 : 10000
-    if(alarmMessage) {
+    const currTime = getTimeAsian()
+    let validGetAlarm = false;
+
+    const subtractTime = (60 - alarmMessage.minutes) + currTime.minutes
+
+    if(alarmMessage.hours === 23){    
+        if(currTime.hours === 0 && subtractTime <= 60) validGetAlarm = true;
+    } else if(alarmMessage.hours<=currTime.hours && currTime.hours <= alarmMessage.hours + 1) {
+        if(currTime.hours === alarmMessage.hours && currTime.minutes >= alarmMessage.minutes) { validGetAlarm = true}
+        else if(currTime.hours === alarmMessage.hours + 1 && subtractTime <= 60){ validGetAlarm = true }
+    }
+    
+    if(alarmMessage && validGetAlarm) {
         res.json(alarmMessage.toJSON())
         setTimeout(async ()=>{
             await AlarmMessage.findByIdAndRemove(alarmMessage.id)

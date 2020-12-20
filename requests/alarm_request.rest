@@ -2,10 +2,10 @@ POST http://localhost:3001/api/alarmMessages/
 Content-Type: application/json
 
 {
-    "hours": 23,
-    "minutes": 10,
+    "hours": 8,
+    "minutes": 50,
     "message": "You shouldn't read this",
-    "code": "aHn2",
+    "code": "aHn3",
     "timeToExpire": 15
 }
 ###//POST alarm without time to expire
@@ -23,7 +23,7 @@ Content-Type: application/json
 GET http://localhost:3001/api/alarmMessages/
 
 ###//Get alarm with code
-GET http://localhost:3001/api/alarmMessages/code/aHn2
+GET http://localhost:3001/api/alarmMessages/code/aHn3
 
 ###//Get alarm normal way (withID)
 //http://localhost:3001/api/alarmMessages/:id
@@ -31,7 +31,7 @@ GET http://localhost:3001/api/alarmMessages/
 
 ###//Delete alarm with id
 //http://localhost:3001/api/alarmMessages/:id
-DELETE http://localhost:3001/api/alarmMessages/ HTTP/1.1
+DELETE http://localhost:3001/api/alarmMessages/5fdeb1664e54de3244610a4b HTTP/1.1
 
 
 ###
